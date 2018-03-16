@@ -30,3 +30,13 @@ const byName = (partial) => {  };
 const filterByName = (customers, partial) => customers.filter(byName/*...*/);
 
 console.log(filterByName(customers, 'Cher'));
+
+/*
+
+    This is the act of currying... applying some of the parameters and fill in the rest later. In the example above,
+    we need to pass along something to the byName function (the partial name) we do NOT pass along the customer yet because
+    this is something the filter method will do! So we create a function that takes the partial parameter, that returns
+    a function that takes the customer. By invoking the byName function we actually CREATE a new function that takes
+    the customer... this newly created function can be used in the filter method.
+
+ */

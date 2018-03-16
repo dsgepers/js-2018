@@ -35,8 +35,8 @@ const personWithAddressNoStreetOptional = Optional(personWithAddressNoStreet).ma
 const personWithoutAddressOptional = Optional(personWithoutAddress).map((person) => person.address).map((address) => address.street).getOrElse('No street');
 const noPersonOptional = Optional(noPerson).map((person) => person.address).map((address) => address.street).getOrElse('No street');
 
-console.log(personWithAddressAndStreetOptional);
-console.log(personWithAddressNoStreetOptional);
-console.log(personWithoutAddressOptional);
-console.log(noPersonOptional);
+console.log(personWithAddressAndStreetOptional); // Test
+console.log(personWithAddressNoStreetOptional); // No street
+console.log(personWithoutAddressOptional); // No street
+console.log(noPersonOptional); // No street
 
