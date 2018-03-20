@@ -20,16 +20,33 @@ const orders = [
  */
 
 // const isEveryOrderedPaid = orders.every ...
-
+const isEveryOrderPayed = orders.every((item) => item.paid);
+console.log(isEveryOrderPayed);
 
 /*
 
     2. use the some method to check if some males (filter) paid for their order
 
  */
+const isSomeMaleOrderPayed = orders.some((item) => item.paid && item.customer.isMale);
+console.log(isSomeMaleOrderPayed);
 
 /*
 
     3. calculate how much needs to be paid (where paid = false)
 
  */
+
+
+Array.prototype.sum = function (property) {
+    var total = 0;
+    for ( var i = 0; i < this.length; i++ ) {
+        total += this[i][property]
+    }
+    return total;
+}
+ 
+const totalToBePaid = orders.filter((item) => !item.paid).sum("amount");
+console.log(totalToBePaid);
+
+
