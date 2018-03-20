@@ -11,85 +11,64 @@ var Calculator = {};
 (function (parent, undefined) {
 
     parent['module'] = function () {
-
-        // Private members
-        var display = 0;
-
+        
         var history = [];
 
-        function add (number) {
-            var start = display;
-            var result = display += number;
-            addHistory(start, number, "+", result);
-            return result;
+        var add = {
+            perform: function (a,b) { log(this.output(a,b)); return this.operation(a,b) },
+            operation : function (a, b) { return a + b; },
+            output : function (a, b) {  return a + "+" + b + "=" + this.operation(a,b); }
+        }
+        var subtract = {
+            perform: function (a,b) { log(this.output(a,b)); return this.operation(a,b) },
+            operation : function (a, b) { return a - b; },
+            output : function (a, b) {  return a + "-" + b + "=" + this.operation(a,b); }
+        }
+        var divide = {
+            perform: function (a,b) { log(this.output(a,b)); return this.operation(a,b) },
+            operation : function (a, b) { return a / b; },
+            output : function (a, b) {  return a + "/" + b + "=" + this.operation(a,b);; }
+        }
+        var multiply = {
+            perform: function (a,b) { log(this.output(a,b)); return this.operation(a,b) },
+            operation : function (a, b) { return a * b; },
+            output : function (a, b) {  return a + "x" + b + "=" + this.operation(a,b);; }
         }
 
-        function subtract (number) {
-            var start = display;
-            var result = display -= number;
-            addHistory(start, number, "-", result);
-            return result;
-        }
-
-        function divideBy (number) {
-            
-            var start = display;
-            var result = display = display / number;;
-            addHistory(start, number, "/", result);
-            return result;
-        }
-
-        function multiplyBy (number) {
-            
-            var start = display;
-            var result = display = display * number;;
-            addHistory(start, number, "x", result);
-            return result;
-        }
-
-        function result () {
-            return display;
-        }
-
-        function addHistory (x, y, operator, result) {
-            history.push(x + operator + y + "=" + result);
-            if (history.length > 10) {
-                history.shift();
-            }
-        }
-
-        function reset () {
-            history = [];
-            display = 0;
+        var log = function (result) {
+            history.push(result);
+            if (history.length > 10) { history.shift(); }
         }
 
         // Public interface
         return {
             add: add,
             subtract: subtract,
-            divide: divideBy,
-            multiply: multiplyBy,
-            history: history,
-            display: result,
-            reset: reset,
+            divide: divide,
+            multiply: multiply,
+            log: log,
+            history: history
         }
 
     }();
 
+
 })(Calculator);
 
-Calculator.module.add(5);
-Calculator.module.add(2);
-Calculator.module.add(1);
-Calculator.module.add(1);
-Calculator.module.multiply(6);
-Calculator.module.divide(2);
-Calculator.module.subtract(7);
-Calculator.module.add(5);
-Calculator.module.add(2);
-Calculator.module.add(1);
-Calculator.module.add(1);
-Calculator.module.multiply(6);
-Calculator.module.divide(2);
-Calculator.module.subtract(7);
+Calculator.module.add.perform(5, 4);
+Calculator.module.subtract.perform(5, 4);
+Calculator.module.multiply.perform(5, 4);
+Calculator.module.divide.perform(5, 4);
+Calculator.module.add.perform(4, 5);
+Calculator.module.subtract.perform(4, 5);
+Calculator.module.multiply.perform(4, 5);
+Calculator.module.divide.perform(4, 5);
+Calculator.module.add.perform(14,5);
+Calculator.module.subtract.perform(14,5);
+Calculator.module.multiply.perform(14,5);
+Calculator.module.divide.perform(14,5);
+Calculator.module.add.perform(2342, 16);
+Calculator.module.subtract.perform(2342, 16);
+Calculator.module.multiply.perform(2342, 16);
+Calculator.module.divide.perform(2342, 16);
 console.log(Calculator.module.history);
