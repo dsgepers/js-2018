@@ -12,13 +12,23 @@
 
 const calculator = function (x, y) {
 
-    return {};
+    var a = x;
+    var b = y;
+    return {
+        add: function () { return a + b; },
+        subtract: function () { return a - b; },
+        multiply: function () { return a * b; },
+        divide: function () { 
+            if (b == 0) { return false; }
+            return a / b; 
+        }
+    };
 };
 
-// console.log('Add: ', calculator(2, 1).add());
-// console.log('Subtract: ', calculator(2, 1).subtract());
-// console.log('Multiply: ', calculator(2, 1).multiply());
-// console.log('Divide: ', calculator(2, 1).divide());
+console.log('Add: ', calculator(2, 1).add());
+console.log('Subtract: ', calculator(2, 1).subtract());
+console.log('Multiply: ', calculator(2, 1).multiply());
+console.log('Divide: ', calculator(2, 1).divide());
 
 /*
 

@@ -29,4 +29,5 @@ const toCopy = {
     their references will still exist and even more unexpected behavior will occur.
 
  */
-
+const copiedObject = Object.assign({}, toCopy); 
+copiedObject.attributes = Object.assign({}, toCopy.attributes);
