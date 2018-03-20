@@ -13,4 +13,9 @@ const list = [1,2,3,4,5,6];
 
  */
 
+
+ var result = list.filter((item) => item % 2 == 0);
+
+ console.log(result);
+
 // const even = list.filter ...
