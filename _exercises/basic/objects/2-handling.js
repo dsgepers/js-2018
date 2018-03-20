@@ -21,23 +21,32 @@ const CharacterMap = {
     1. Display a comma separated list of names on the screen
 
  */
+Object.values(CharacterMap).forEach((item) => console.log(item.name));
 
 /*
 
     2. Get a list of the identifiers of the characters
 
  */
+Object.keys(CharacterMap).forEach((item) => console.log(item));
 
 /*
 
     3. Get the names in a comma separated list of every character older than 50
 
  */
+console.log(Object.values(CharacterMap).filter((item) => item.age > 50).map((item) => item.name).join(", "));
 
 /*
 
     4. Write a search function that takes a partial string as input (e.g. "Fro") and returns every character starting with that string
 
  */
+Array.prototype.like = function(query, field) {
+    return this.filter((item) => {
+        return item[field].search(new RegExp(query, "i")) !== -1;
+    });
+  }
+console.log(Object.values(CharacterMap).like("ar", "name").map((item) => item.name).join(", "));
 
 
